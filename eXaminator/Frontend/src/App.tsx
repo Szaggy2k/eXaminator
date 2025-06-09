@@ -1,17 +1,17 @@
 import "~styles/tailwind.css";
-import { StrictMode } from "react";
-import { BrowserRouter, Route, Routes } from "react-router";
 import IndexPage from "~pages/IndexPage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SnackbarProvider } from "notistack";
+
+const queryClient = new QueryClient();
 
 function App() {
 	return (
-		<StrictMode>
-			<BrowserRouter>
-				<Routes>
-					<Route path="*" element={<IndexPage />}></Route>
-				</Routes>
-			</BrowserRouter>
-		</StrictMode>
+		<QueryClientProvider client={queryClient}>
+			<SnackbarProvider maxSnack={1} preventDuplicate={true} anchorOrigin={{ horizontal: "right", vertical: "top" }} autoHideDuration={2000}>
+				<IndexPage />
+			</SnackbarProvider>
+		</QueryClientProvider>
 	);
 }
 

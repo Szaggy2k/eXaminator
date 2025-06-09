@@ -1,13 +1,47 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Version>0.5-alpha</Version>
+		<FileVersion>0.5-alpha</FileVersion>
+		<ApplicationIcon>Frontend\public\favicon.ico</ApplicationIcon>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+	<ItemGroup>
+	  <Content Include="Frontend\public\favicon.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Db\Migrations\" />
+		<Folder Include="wwwroot\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="8.0.16" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.16" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.16">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.16" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.16" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\eXaminator.Models\eXaminator.Models.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="wwwroot\**">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<Target Name="FrontendBuild" BeforeTargets="Publish">
+		<Exec WorkingDirectory="Frontend" Command="pnpm install" />
+		<Exec WorkingDirectory="Frontend" Command="pnpm run build" />
+	</Target>
 
 </Project>

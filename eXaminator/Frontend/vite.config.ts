@@ -5,10 +5,13 @@ import tsConfigPaths from "vite-tsconfig-paths";
 
 // https://vite.dev/config/
 export default defineConfig({
-	base: "/szaggy-react-template/",
 	plugins: [react(), tailwindcss(), tsConfigPaths()],
-	preview: {
-		port: 3000,
-		strictPort: true,
+	build: {
+		outDir: "../wwwroot",
+		emptyOutDir: true
 	},
+	server: {
+		port: 5173,
+		strictPort: true
+	}
 });
