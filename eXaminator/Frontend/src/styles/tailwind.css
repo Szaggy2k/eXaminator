@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+.a-rotate-c {
+	animation: clockwiseRotate 30s forwards linear infinite;
+}
+
+.a-rotate-cc {
+	animation: counterRotate 30s forwards linear infinite;
+}
+
+@keyframes clockwiseRotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes counterRotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(-360deg);
+	}
+}
